@@ -12,13 +12,13 @@ from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen as uReq
 import urllib.request
 import requests
-import time
+import time, os
 
 #My Models
 from updated.models import update
 
 
-
+URL = os.environ.get("TELEGRAM_URL", "")
 
 
 
@@ -105,7 +105,7 @@ import random
 
 
 def send_Telegram_Message(chat_id,msg):
-    my_url="https://api.telegram.org/bot863245415:AAEBKoPjrus-XzSUgU0hWz_POeTRZqymUBE/sendmessage?chat_id="+str(chat_id)+"&text="+str(msg)
+    my_url=URL+str(chat_id)+"&text="+str(msg)
     # while True:
     try:
         result=requests.get(my_url).json()
@@ -122,7 +122,7 @@ def send_Telegram_Message(chat_id,msg):
 def get_New_Id():
     #print("GO GO")
     obl=telegram_offset.objects.filter(active=True).first()
-    my_url="https://api.telegram.org/bot863245415:AAEBKoPjrus-XzSUgU0hWz_POeTRZqymUBE/getupdates?offset="+str(obl.offset + 1)
+    my_url=URL+str(obl.offset + 1)
     result=requests.get(my_url).json()['result']
     length=len(result)
     for i in range(length):

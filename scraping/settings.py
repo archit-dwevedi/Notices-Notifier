@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '3f^kk*s@8+cd&qpgh98(^3oabh5ie%ms7y2=$pmy@a4+-99s+i'
+SECRET_KEY = os.environ.get("SECRET_KEY", "")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -139,13 +139,3 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn","static_root"
 MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn","media_root")
-
-
-
-
-
-EMAIL_USE_TLS = True
-EMAIL_HOST='smtp.gmail.com'
-EMAIL_HOST_USER='brokers056@gmail.com'
-EMAIL_HOST_PASSWORD='architliberty5'
-EMAIL_PORT=587
